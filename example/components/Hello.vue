@@ -29,8 +29,7 @@ export default {
         }
     },
     beforeCreate () {
-        // console.log(this)
-        console.log('1', this.$tab, this.$taber)
+        console.log('1', this.$tab.params, this.$taber, this)
     },
     created () {
         console.log('2', this.$tab, this.$taber)

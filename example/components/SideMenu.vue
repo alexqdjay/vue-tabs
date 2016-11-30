@@ -28,11 +28,25 @@ export default {
             selected: '管理'
         }
     },
+    created () {
+        this.$taber.$on('vue-tabs-actived-change', (tab) => {
+            if (tab) {
+                this.selected = tab.meta.title
+            } else {
+                this.selected = null
+            }
+        })
+    },
     methods: {
         clickMenuItem (item) {
             this.selected = item.text
 
-            this.$taber.open(item.name)
+            this.$taber.open({
+                name: item.name,
+                params: {
+                    title: item.text
+                }
+            })
         }
     }
 }

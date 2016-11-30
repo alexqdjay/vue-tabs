@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-import VueTaber from './components/index.js'
+import VueTaber from '../src/index.js'
 import tabs from './tabs.js'
 
 const vueTaber = new VueTaber({
@@ -8,9 +8,12 @@ const vueTaber = new VueTaber({
     el: '#vueTabs'
 })
 
-vueTaber.beforeOpenEach((tab, next) => {
-    console.log('before...', tab.name)
-    next('test1')
+vueTaber.beforeCreateEach((tab, next) => {
+    if (tab.name === 'setting') {
+        next('home')
+    } else {
+        next()
+    }
 })
 
 Vue.use(VueTaber)

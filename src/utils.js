@@ -13,4 +13,8 @@ export function isString (str) {
 }
 
 export function isObject (obj) {
+    if (!obj) {
+        return false
+    }
+    return Object.prototype.toString.call(obj) === '[object Object]'
 }

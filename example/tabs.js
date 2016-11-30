@@ -3,7 +3,15 @@ import Hello from './components/Hello'
 export default [{
     name: 'home',
     title: '首页',
-    component: Hello
+    component: Hello,
+    beforeCreate (tab, next) {
+        console.log('before create:', tab)
+        next()
+    },
+    beforeClose (tab, next) {
+        console.log('before close', tab)
+        next()
+    }
 }, {
     name: 'test1',
     title: '测试1',
@@ -21,5 +29,11 @@ export default [{
     title: '测试3',
     component: {
         template: '<h2>测试3</h2>'
+    }
+}, {
+    name: 'setting',
+    title: '设置',
+    component: {
+        template: '<h2>设置</h2>'
     }
 }]

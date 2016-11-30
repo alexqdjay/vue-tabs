@@ -1,19 +1,23 @@
 <template>
 <div id="app">
     <side-menu></side-menu>
-    <div id="vueTabs"></div>
+    <vue-tabs></vue-tabs>
 </div>
 </template>
 
 <script>
 import Hello from './components/Hello'
 import SideMenu from './components/SideMenu'
-import Tabs from './components/Tabs'
 
 export default {
     name: 'app',
     components: {
-        Hello, SideMenu, Tabs
+        Hello, SideMenu
+    },
+    methods: {
+        dd (tab) {
+            console.log(tab)
+        }
     }
 }
 </script>
