@@ -10,7 +10,6 @@
 </div>
 </template>
 <script>
-import Vue from 'vue'
 import {isFunction, isString, isObject} from './utils'
 
 function tabIdGen (tabName, tabKey = '') {
@@ -20,7 +19,7 @@ function tabIdGen (tabName, tabKey = '') {
     }
     return `${tabName}/${tabKey}`
 }
-const EVENT_ACTIVE_CHANGE = 'vue-tabs-actived-change'
+const EVENT_ACTIVE_CHANGE = 'vue-tabs-active-change'
 const EVENT_CLOSE = 'vue-tabs-close'
 const cached = {}
 export default {
@@ -37,13 +36,14 @@ export default {
     },
     methods: {
         appendContent (tab) {
-            const Component = cached[tab.name] || (cached[tab.name] = Vue.extend(tab.meta.component))
-            Component.prototype.$tab = tab
+            const Component = cached[tab.name] || (cached[tab.name] = this.getVue().extend(tab.meta.component))
+            // Component.prototype.$tab = tab
             const $el = document.createElement('div')
             const instance = new Component({
                 el: $el,
                 __taber: this.$taber,
-                parent: this
+                parent: this,
+                $tab: tab
             })
             tab.content = instance
             instance.$el.classList.add('tabs-content')

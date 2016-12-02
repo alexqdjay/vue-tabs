@@ -1,16 +1,14 @@
 import {isString, isFunction} from './utils'
 import install from './install'
 
-const allEvents = ['vue-tabs-close', 'vue-tabs-actived-change']
+const allEvents = ['vue-tabs-close', 'vue-tabs-active-change']
 export default class VueTaber {
     constructor (options) {
-        const {tabs: ops_tabs, el} = options
+        const {tabs: ops_tabs} = options
         this._tabsMap = {}
         ops_tabs.forEach((tab) => {
             this._tabsMap[tab.name] = tab
         })
-
-        this.el = el
 
         this.beforeCreateHocks = []
         this.beforeCloseHocks = []

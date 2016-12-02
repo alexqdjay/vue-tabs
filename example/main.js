@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-import VueTaber from '../src/index.js'
+import VueTaber from '../vue-tabs.js'
 import tabs from './tabs.js'
 
 const vueTaber = new VueTaber({

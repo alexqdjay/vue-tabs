@@ -17,6 +17,10 @@ export default [{
     title: '测试1',
     component: {
         template: '<h2>测试1</h2>'
+    },
+    beforeCreate (tab, next) {
+        console.log('before create:', tab)
+        next()
     }
 }, {
     name: 'test2',

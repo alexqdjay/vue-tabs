@@ -1,23 +1,21 @@
 var path = require('path')
-var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
-var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
-var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
-var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
   entry: {
-    app: './example/main.js'
+    'vue-tabs': './src/index.js'
   },
   output: {
-    path: config.build.assetsRoot,
-    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-    filename: '[name].js'
+    path: path.resolve(__dirname, '../'),
+    publicPath: './',
+    filename: '[name].js',
+    library: 'VueTaber',
+    libraryTarget: 'umd'
   },
   resolve: {
     extensions: ['', '.js', '.vue'],
@@ -44,7 +42,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint',
         include: projectRoot,
-        exclude: /node_modules|vue-tabs.js/
+        exclude: /node_modules/
       }
     ],
     loaders: [
@@ -84,7 +82,7 @@ module.exports = {
     formatter: require('eslint-friendly-formatter')
   },
   vue: {
-    loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
+    loaders: utils.cssLoaders({ sourceMap: false }),
     postcss: [
       require('autoprefixer')({
         browsers: ['last 2 versions']

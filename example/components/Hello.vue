@@ -30,6 +30,9 @@ export default {
     },
     beforeCreate () {
         console.log('1', this.$tab.params, this.$taber, this)
+        this.$taber.$on('vue-tabs-active-change', () => {
+            console.log(this.$tab)
+        })
     },
     created () {
         console.log('2', this.$tab, this.$taber)

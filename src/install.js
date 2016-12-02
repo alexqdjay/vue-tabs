@@ -11,6 +11,13 @@ export default function install (Vue) {
         }
     })
 
+    Object.defineProperty(Vue.prototype, '$tab', {
+        get () {
+            return this.$options.$tab
+        }
+    })
+
+    TabsView.methods.getVue = () => Vue
     Vue.component('VueTabs', TabsView)
 
     Vue.mixin({

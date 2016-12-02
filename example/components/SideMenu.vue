@@ -29,7 +29,7 @@ export default {
         }
     },
     created () {
-        this.$taber.$on('vue-tabs-actived-change', (tab) => {
+        this.$taber.$on('vue-tabs-active-change', (tab) => {
             if (tab) {
                 this.selected = tab.meta.title
             } else {
