@@ -5,8 +5,7 @@ import '../vue-tabs.css'
 import tabs from './tabs.js'
 
 const vueTaber = new VueTaber({
-    tabs,
-    el: '#vueTabs'
+    tabs
 })
 
 vueTaber.beforeCreateEach((tab, next) => {
