@@ -159,7 +159,7 @@ export default {
     }
 }
 </script>
-<style lang="less">
+<style >
 .vue-tabs {
     position: relative;
 }

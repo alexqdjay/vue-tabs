@@ -1,1 +1,362 @@
-!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.VueTaber=e():t.VueTaber=e()}(this,function(){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,e),o.loaded=!0,o.exports}var n={};return e.m=t,e.c=n,e.p="./",e(0)}([function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(28),i=r(o);e.default=i.default},function(t,e,n){var r=n(23)("wks"),o=n(27),i=n(3).Symbol,a="function"==typeof i,u=t.exports=function(t){return r[t]||(r[t]=a&&i[t]||(a?i:o)("Symbol."+t))};u.store=r},function(t,e,n){t.exports=!n(21)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,e){var n=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=n)},function(t,e,n){var r=n(5),o=n(43),i=n(59),a=Object.defineProperty;e.f=n(2)?Object.defineProperty:function(t,e,n){if(r(t),e=i(e,!0),r(n),o)try{return a(t,e,n)}catch(t){}if("get"in n||"set"in n)throw TypeError("Accessors not supported!");return"value"in n&&(t[e]=n.value),t}},function(t,e,n){var r=n(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,e){var n=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=n)},function(t,e){var n={}.hasOwnProperty;t.exports=function(t,e){return n.call(t,e)}},function(t,e,n){var r=n(4),o=n(13);t.exports=n(2)?function(t,e,n){return r.f(t,e,o(1,n))}:function(t,e,n){return t[e]=n,t}},function(t,e){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,e,n){var r=n(3),o=n(6),i=n(18),a=n(8),u="prototype",s=function(t,e,n){var c,f,l,p=t&s.F,v=t&s.G,d=t&s.S,h=t&s.P,b=t&s.B,y=t&s.W,m=v?o:o[e]||(o[e]={}),g=m[u],x=v?r:d?r[e]:(r[e]||{})[u];v&&(n=e);for(c in n)f=!p&&x&&void 0!==x[c],f&&c in m||(l=f?x[c]:n[c],m[c]=v&&"function"!=typeof x[c]?n[c]:b&&f?i(l,r):y&&x[c]==l?function(t){var e=function(e,n,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(e);case 2:return new t(e,n)}return new t(e,n,r)}return t.apply(this,arguments)};return e[u]=t[u],e}(l):h&&"function"==typeof l?i(Function.call,l):l,h&&((m.virtual||(m.virtual={}))[c]=l,t&s.R&&g&&!g[c]&&a(g,c,l)))};s.F=1,s.G=2,s.S=4,s.P=8,s.B=16,s.W=32,s.U=64,s.R=128,t.exports=s},function(t,e){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,e){t.exports={}},function(t,e){t.exports=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}}},function(t,e,n){var r=n(23)("keys"),o=n(27);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,e){var n=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:n)(t)}},function(t,e){"use strict";function n(t){return!!t&&"function"==typeof t}function r(t){return!!t&&"string"==typeof t}function o(t){return!!t&&"[object Object]"===Object.prototype.toString.call(t)}Object.defineProperty(e,"__esModule",{value:!0}),e.isFunction=n,e.isString=r,e.isObject=o},function(t,e){var n={}.toString;t.exports=function(t){return n.call(t).slice(8,-1)}},function(t,e,n){var r=n(38);t.exports=function(t,e,n){if(r(t),void 0===e)return t;switch(n){case 1:return function(n){return t.call(e,n)};case 2:return function(n,r){return t.call(e,n,r)};case 3:return function(n,r,o){return t.call(e,n,r,o)}}return function(){return t.apply(e,arguments)}}},function(t,e,n){var r=n(11),o=n(3).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,e){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,e){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,e,n){var r=n(4).f,o=n(7),i=n(1)("toStringTag");t.exports=function(t,e,n){t&&!o(t=n?t:t.prototype,i)&&r(t,i,{configurable:!0,value:e})}},function(t,e,n){var r=n(3),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,e,n){var r=n(44),o=n(9);t.exports=function(t){return r(o(t))}},function(t,e,n){var r=n(15),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,e,n){var r=n(9);t.exports=function(t){return Object(r(t))}},function(t,e){var n=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++n+r).toString(36))}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(33),i=r(o),a=n(34),u=r(a),s=n(16),c=n(29),f=r(c),l=["vue-tabs-close","vue-tabs-active-change"],p=function(){function t(e){var n=this;(0,i.default)(this,t);var r=e.tabs;this._tabsMap={},r.forEach(function(t){n._tabsMap[t.name]=t}),this.beforeCreateHocks=[],this.beforeCloseHocks=[],this._events={}}return(0,u.default)(t,[{key:"findTab",value:function(t){if(!t)return null;var e=void 0;return e=(0,s.isString)(t)?t:t.name,this._tabsMap[e]}},{key:"open",value:function(t){(0,s.isString)(t)&&(t={name:t});var e=this.findTab(t);if(!e)return void console.error("The Tab ["+t.name+"] is not defined!");t.meta=e;var n=this.vm.findOpenTab(t.name,t.key);n?this.vm.select(n):this.vm.create(t)}},{key:"close",value:function(t){(0,s.isString)(t)&&(t={name:t});var e=this.findTab(t);if(!e)return void console.error("The Tab ["+t.name+"] is not defined!");t.meta=e;var n=this.vm.findOpenTab(t.name,t.key);this.vm.close(n)}},{key:"select",value:function(t){(0,s.isString)(t)&&(t={name:t});var e=this.vm.findOpenTab(t.name,t.key);this.vm.select(e)}},{key:"$on",value:function(t,e){return t&&(0,s.isFunction)(e)?(this._events[t]||(this._events[t]=[]),void this._events[t].push(e)):void console.log("$on error event:["+t+"], call:"+e)}},{key:"$off",value:function(t,e){if(t){var n=this._events[t]||[];if(e){var r=n.indexOf(e);r!==-1&&n.splice(r,1)}else this._events[t]=[]}}},{key:"beforeCreateEach",value:function(t){(0,s.isFunction)(t)&&this.beforeCreateHocks.push(t)}},{key:"beforeCloseEach",value:function(t){(0,s.isFunction)(t)&&this.beforeCloseHocks.push(t)}},{key:"vm",set:function(t){var e=this;this._vm=t;var n=this;l.forEach(function(r){t.$on(r,function(){for(var t=arguments.length,o=Array(t),i=0;i<t;i++)o[i]=arguments[i];var a=e._events[r]||[];a.forEach(function(t){t.apply(n,o)})})})},get:function(){return this._vm}}]),t}();e.default=p,p.install=f.default,window.Vue&&window.Vue.use(p)},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t){o.installed||(o.installed=!0,Object.defineProperty(t.prototype,"$taber",{get:function(){return this.$root._taber}}),Object.defineProperty(t.prototype,"$tab",{get:function(){return this.$options.$tab}}),a.default.methods.getVue=function(){return t},t.component("VueTabs",a.default),t.mixin({beforeCreate:function(){this.$options.taber?this._taber=this.$options.taber:this.$options.__taber&&(this._taber=this.$options.__taber)}}))}Object.defineProperty(e,"__esModule",{value:!0}),e.default=o;var i=n(66),a=r(i)},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";if((0,u.isObject)(t)){var n=t.name,r=t.key,o=void 0===r?"":r;return n+"/"+o}return t+"/"+e}Object.defineProperty(e,"__esModule",{value:!0});var i=n(35),a=r(i),u=n(16),s="vue-tabs-active-change",c="vue-tabs-close",f={};e.default={data:function(){return{tabs:[],active:null}},beforeCreate:function(){this.tabSize=0,this.tabMap={},this.$taber.vm=this},methods:{appendContent:function(t){var e=f[t.name]||(f[t.name]=this.getVue().extend(t.meta.component)),n=document.createElement("div"),r=new e({el:n,__taber:this.$taber,parent:this,$tab:t});t.content=r,r.$el.classList.add("tabs-content"),this.$refs.contentWrapEl.appendChild(r.$el)},clickTab:function(t){this.select(t)},close:function(t){function e(n){if(null==n)r[++i].call(f,t,e);else if(n===!1)return}function n(){t.content.$destroy(),t.content.$el.remove(),this.tabMap[o(t)]=null;var e=this.tabs.indexOf(t);e!==-1&&(this.tabs.splice(e,1),this.tabs.length>0&&this.active===t?e<this.tabs.length?this.select(this.tabs[e]):this.select(this.tabs[this.tabs.length-1]):0===this.tabs.length&&this.$emit(s,null,t),this.$emit(c,t))}if(t){var r=[].concat((0,a.default)(this.$taber.beforeCloseHocks));t.meta.beforeClose&&(0,u.isFunction)(t.meta.beforeClose)&&r.push(t.meta.beforeClose),r.push(n);var i=0,f=this;r[0].call(f,t,e)}},create:function(t){var e=this,n=[].concat((0,a.default)(this.$taber.beforeCreateHocks));t.meta.beforeCreate&&(0,u.isFunction)(t.meta.beforeCreate)&&n.push(t.meta.beforeCreate);var r=0,i=this,s=function(e){if(null==e)n[++r].call(i,t,s);else{if(e===!1)return;(0,u.isString)(e)&&e===t.name?n[++r].call(i,t,s):(0,u.isObject)(e)&&e.name===t.name?n[++r].call(i,t,s):i.$taber.open(e)}};n.push(function(){e.tabs.push(t),e.appendContent(t),e.select(t);var r=o(t.name,t.key);e.tabMap[r]=t,s=null,n=null}),n[0].call(this,t,s)},findOpenTab:function(t,e){var n=o(t,e);return this.tabMap[n]},select:function(t){t&&t!==this.active&&(this.$emit(s,t,this.active),this.active=t)}},watch:{active:function(t,e){t&&t!==e&&this.tabs.forEach(function(e){e.name===t.name?e.content.$el.classList.add("active"):e.content.$el.classList.remove("active")})}}}},function(t,e,n){t.exports={default:n(36),__esModule:!0}},function(t,e,n){t.exports={default:n(37),__esModule:!0}},function(t,e){"use strict";e.__esModule=!0,e.default=function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}e.__esModule=!0;var o=n(32),i=r(o);e.default=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),(0,i.default)(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}()},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}e.__esModule=!0;var o=n(31),i=r(o);e.default=function(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return(0,i.default)(t)}},function(t,e,n){n(63),n(61),t.exports=n(6).Array.from},function(t,e,n){n(62);var r=n(6).Object;t.exports=function(t,e,n){return r.defineProperty(t,e,n)}},function(t,e){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,e,n){var r=n(24),o=n(25),i=n(58);t.exports=function(t){return function(e,n,a){var u,s=r(e),c=o(s.length),f=i(a,c);if(t&&n!=n){for(;c>f;)if(u=s[f++],u!=u)return!0}else for(;c>f;f++)if((t||f in s)&&s[f]===n)return t||f||0;return!t&&-1}}},function(t,e,n){var r=n(17),o=n(1)("toStringTag"),i="Arguments"==r(function(){return arguments}()),a=function(t,e){try{return t[e]}catch(t){}};t.exports=function(t){var e,n,u;return void 0===t?"Undefined":null===t?"Null":"string"==typeof(n=a(e=Object(t),o))?n:i?r(e):"Object"==(u=r(e))&&"function"==typeof e.callee?"Arguments":u}},function(t,e,n){"use strict";var r=n(4),o=n(13);t.exports=function(t,e,n){e in t?r.f(t,e,o(0,n)):t[e]=n}},function(t,e,n){t.exports=n(3).document&&document.documentElement},function(t,e,n){t.exports=!n(2)&&!n(21)(function(){return 7!=Object.defineProperty(n(19)("div"),"a",{get:function(){return 7}}).a})},function(t,e,n){var r=n(17);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,e,n){var r=n(12),o=n(1)("iterator"),i=Array.prototype;t.exports=function(t){return void 0!==t&&(r.Array===t||i[o]===t)}},function(t,e,n){var r=n(5);t.exports=function(t,e,n,o){try{return o?e(r(n)[0],n[1]):e(n)}catch(e){var i=t.return;throw void 0!==i&&r(i.call(t)),e}}},function(t,e,n){"use strict";var r=n(51),o=n(13),i=n(22),a={};n(8)(a,n(1)("iterator"),function(){return this}),t.exports=function(t,e,n){t.prototype=r(a,{next:o(1,n)}),i(t,e+" Iterator")}},function(t,e,n){"use strict";var r=n(50),o=n(10),i=n(56),a=n(8),u=n(7),s=n(12),c=n(47),f=n(22),l=n(53),p=n(1)("iterator"),v=!([].keys&&"next"in[].keys()),d="@@iterator",h="keys",b="values",y=function(){return this};t.exports=function(t,e,n,m,g,x,_){c(n,e,m);var w,O,j,C=function(t){if(!v&&t in T)return T[t];switch(t){case h:return function(){return new n(this,t)};case b:return function(){return new n(this,t)}}return function(){return new n(this,t)}},M=e+" Iterator",S=g==b,k=!1,T=t.prototype,$=T[p]||T[d]||g&&T[g],E=$||C(g),A=g?S?C("entries"):E:void 0,P="Array"==e?T.entries||$:$;if(P&&(j=l(P.call(new t)),j!==Object.prototype&&(f(j,M,!0),r||u(j,p)||a(j,p,y))),S&&$&&$.name!==b&&(k=!0,E=function(){return $.call(this)}),r&&!_||!v&&!k&&T[p]||a(T,p,E),s[e]=E,s[M]=y,g)if(w={values:S?E:C(b),keys:x?E:C(h),entries:A},_)for(O in w)O in T||i(T,O,w[O]);else o(o.P+o.F*(v||k),e,w);return w}},function(t,e,n){var r=n(1)("iterator"),o=!1;try{var i=[7][r]();i.return=function(){o=!0},Array.from(i,function(){throw 2})}catch(t){}t.exports=function(t,e){if(!e&&!o)return!1;var n=!1;try{var i=[7],a=i[r]();a.next=function(){return{done:n=!0}},i[r]=function(){return a},t(i)}catch(t){}return n}},function(t,e){t.exports=!0},function(t,e,n){var r=n(5),o=n(52),i=n(20),a=n(14)("IE_PROTO"),u=function(){},s="prototype",c=function(){var t,e=n(19)("iframe"),r=i.length,o="<",a=">";for(e.style.display="none",n(42).appendChild(e),e.src="javascript:",t=e.contentWindow.document,t.open(),t.write(o+"script"+a+"document.F=Object"+o+"/script"+a),t.close(),c=t.F;r--;)delete c[s][i[r]];return c()};t.exports=Object.create||function(t,e){var n;return null!==t?(u[s]=r(t),n=new u,u[s]=null,n[a]=t):n=c(),void 0===e?n:o(n,e)}},function(t,e,n){var r=n(4),o=n(5),i=n(55);t.exports=n(2)?Object.defineProperties:function(t,e){o(t);for(var n,a=i(e),u=a.length,s=0;u>s;)r.f(t,n=a[s++],e[n]);return t}},function(t,e,n){var r=n(7),o=n(26),i=n(14)("IE_PROTO"),a=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?a:null}},function(t,e,n){var r=n(7),o=n(24),i=n(39)(!1),a=n(14)("IE_PROTO");t.exports=function(t,e){var n,u=o(t),s=0,c=[];for(n in u)n!=a&&r(u,n)&&c.push(n);for(;e.length>s;)r(u,n=e[s++])&&(~i(c,n)||c.push(n));return c}},function(t,e,n){var r=n(54),o=n(20);t.exports=Object.keys||function(t){return r(t,o)}},function(t,e,n){t.exports=n(8)},function(t,e,n){var r=n(15),o=n(9);t.exports=function(t){return function(e,n){var i,a,u=String(o(e)),s=r(n),c=u.length;return s<0||s>=c?t?"":void 0:(i=u.charCodeAt(s),i<55296||i>56319||s+1===c||(a=u.charCodeAt(s+1))<56320||a>57343?t?u.charAt(s):i:t?u.slice(s,s+2):(i-55296<<10)+(a-56320)+65536)}}},function(t,e,n){var r=n(15),o=Math.max,i=Math.min;t.exports=function(t,e){return t=r(t),t<0?o(t+e,0):i(t,e)}},function(t,e,n){var r=n(11);t.exports=function(t,e){if(!r(t))return t;var n,o;if(e&&"function"==typeof(n=t.toString)&&!r(o=n.call(t)))return o;if("function"==typeof(n=t.valueOf)&&!r(o=n.call(t)))return o;if(!e&&"function"==typeof(n=t.toString)&&!r(o=n.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,e,n){var r=n(40),o=n(1)("iterator"),i=n(12);t.exports=n(6).getIteratorMethod=function(t){if(void 0!=t)return t[o]||t["@@iterator"]||i[r(t)]}},function(t,e,n){"use strict";var r=n(18),o=n(10),i=n(26),a=n(46),u=n(45),s=n(25),c=n(41),f=n(60);o(o.S+o.F*!n(49)(function(t){Array.from(t)}),"Array",{from:function(t){var e,n,o,l,p=i(t),v="function"==typeof this?this:Array,d=arguments.length,h=d>1?arguments[1]:void 0,b=void 0!==h,y=0,m=f(p);if(b&&(h=r(h,d>2?arguments[2]:void 0,2)),void 0==m||v==Array&&u(m))for(e=s(p.length),n=new v(e);e>y;y++)c(n,y,b?h(p[y],y):p[y]);else for(l=m.call(p),n=new v;!(o=l.next()).done;y++)c(n,y,b?a(l,h,[o.value,y],!0):o.value);return n.length=y,n}})},function(t,e,n){var r=n(10);r(r.S+r.F*!n(2),"Object",{defineProperty:n(4).f})},function(t,e,n){"use strict";var r=n(57)(!0);n(48)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,e=this._t,n=this._i;return n>=e.length?{value:void 0,done:!0}:(t=r(e,n),this._i+=t.length,{value:t,done:!1})})},function(t,e,n){e=t.exports=n(65)(),e.push([t.id,".vue-tabs{position:relative}.tabs-list-wrapper{padding:0 8px}.tabs-list{list-style:none;margin:0;padding:0;overflow:auto;width:auto;zoom:1}.tabs-list>li{float:left;padding:6px 18px;position:relative;color:#999}.tabs-list>li.active{color:#333}.tabs-list>li.active:after{content:' ';position:absolute;bottom:0;width:100%;height:2px;background-color:#1ab394;left:0}.tabs-list>li.active .btn-close{opacity:1}.tabs-list>li:hover{cursor:pointer}.tabs-list>li:hover .btn-close{opacity:1}.tabs-list>li .btn-close{position:absolute;display:inline-block;opacity:0;top:2px;right:0;line-height:12px;width:14px;height:14px;border-radius:14px;font-size:12px;color:#999;transition:all .2s ease}.tabs-list>li .btn-close:hover{color:#333;transform:scale(1.5);cursor:pointer}.tabs-content-wrapper{position:relative}.tabs-content-wrapper .tabs-content{display:none}.tabs-content-wrapper .tabs-content.active{display:block}",""])},function(t,e){t.exports=function(){var t=[];return t.toString=function(){for(var t=[],e=0;e<this.length;e++){var n=this[e];n[2]?t.push("@media "+n[2]+"{"+n[1]+"}"):t.push(n[1])}return t.join("")},t.i=function(e,n){"string"==typeof e&&(e=[[null,e,""]]);for(var r={},o=0;o<this.length;o++){var i=this[o][0];"number"==typeof i&&(r[i]=!0)}for(o=0;o<e.length;o++){var a=e[o];"number"==typeof a[0]&&r[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),t.push(a))}},t}},function(t,e,n){var r,o;n(69),r=n(30);var i=n(67);o=r=r||{},"object"!=typeof r.default&&"function"!=typeof r.default||(o=r=r.default),"function"==typeof o&&(o=o.options),o.render=i.render,o.staticRenderFns=i.staticRenderFns,t.exports=r},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement;return e("div",{staticClass:"vue-tabs"},[e("div",{staticClass:"tabs-list-wrapper"},[e("ul",{staticClass:"tabs-list"},[t._l(t.tabs,function(n){return e("li",{class:{active:t.active===n},on:{click:function(e){t.clickTab(n)}}},[t._s(n.meta.title),e("span",{staticClass:"btn-close",on:{click:function(e){e.stopPropagation(),t.close(n)}}},["×"])])})])])," ",e("div",{ref:"contentWrapEl",staticClass:"tabs-content-wrapper"})])},staticRenderFns:[]}},function(t,e,n){function r(t,e){for(var n=0;n<t.length;n++){var r=t[n],o=l[r.id];if(o){o.refs++;for(var i=0;i<o.parts.length;i++)o.parts[i](r.parts[i]);for(;i<r.parts.length;i++)o.parts.push(s(r.parts[i],e))}else{for(var a=[],i=0;i<r.parts.length;i++)a.push(s(r.parts[i],e));l[r.id]={id:r.id,refs:1,parts:a}}}}function o(t){for(var e=[],n={},r=0;r<t.length;r++){var o=t[r],i=o[0],a=o[1],u=o[2],s=o[3],c={css:a,media:u,sourceMap:s};n[i]?n[i].parts.push(c):e.push(n[i]={id:i,parts:[c]})}return e}function i(t,e){var n=d(),r=y[y.length-1];if("top"===t.insertAt)r?r.nextSibling?n.insertBefore(e,r.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),y.push(e);else{if("bottom"!==t.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");n.appendChild(e)}}function a(t){t.parentNode.removeChild(t);var e=y.indexOf(t);e>=0&&y.splice(e,1)}function u(t){var e=document.createElement("style");return e.type="text/css",i(t,e),e}function s(t,e){var n,r,o;if(e.singleton){var i=b++;n=h||(h=u(e)),r=c.bind(null,n,i,!1),o=c.bind(null,n,i,!0)}else n=u(e),r=f.bind(null,n),o=function(){a(n)};return r(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;r(t=e)}else o()}}function c(t,e,n,r){var o=n?"":r.css;if(t.styleSheet)t.styleSheet.cssText=m(e,o);else{var i=document.createTextNode(o),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(i,a[e]):t.appendChild(i)}}function f(t,e){var n=e.css,r=e.media,o=e.sourceMap;if(r&&t.setAttribute("media",r),o&&(n+="\n/*# sourceURL="+o.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */"),t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}var l={},p=function(t){var e;return function(){return"undefined"==typeof e&&(e=t.apply(this,arguments)),e}},v=p(function(){return/msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase())}),d=p(function(){return document.head||document.getElementsByTagName("head")[0]}),h=null,b=0,y=[];t.exports=function(t,e){e=e||{},"undefined"==typeof e.singleton&&(e.singleton=v()),"undefined"==typeof e.insertAt&&(e.insertAt="bottom");var n=o(t);return r(n,e),function(t){for(var i=[],a=0;a<n.length;a++){var u=n[a],s=l[u.id];s.refs--,i.push(s)}if(t){var c=o(t);r(c,e)}for(var a=0;a<i.length;a++){var s=i[a];if(0===s.refs){for(var f=0;f<s.parts.length;f++)s.parts[f]();delete l[s.id]}}}};var m=function(){var t=[];return function(e,n){return t[e]=n,t.filter(Boolean).join("\n")}}()},function(t,e,n){var r=n(64);"string"==typeof r&&(r=[[t.id,r,""]]);n(68)(r,{});r.locals&&(t.exports=r.locals)}])});
+/**
+ * vue-tabs v0.1.0
+ * (c) 2016 ALEXQDJAY
+ * @license MIT
+ */
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global.VueTaber = factory());
+}(this, (function () { 'use strict';
+
+function isFunction (fn) {
+    if (!fn) {
+        return false
+    }
+    return typeof fn === 'function'
+}
+
+function isString (str) {
+    if (!str) {
+        return false
+    }
+    return typeof str === 'string'
+}
+
+function isObject (obj) {
+    if (!obj) {
+        return false
+    }
+    return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
+function tabIdGen (tabName, tabKey) {
+    if ( tabKey === void 0 ) tabKey = '';
+
+    if (isObject(tabName)) {
+        var name = tabName.name;
+        var key = tabName.key; if ( key === void 0 ) key = '';
+        return (name + "/" + key)
+    }
+    return (tabName + "/" + tabKey)
+}
+var EVENT_ACTIVE_CHANGE = 'vue-tabs-active-change';
+var EVENT_CLOSE = 'vue-tabs-close';
+var cached = {};
+var TabsView = {
+render: function(){var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"vue-tabs"},[_h('div',{staticClass:"tabs-list-wrapper"},[_h('ul',{staticClass:"tabs-list"},[_vm._l((_vm.tabs),function(tab){return _h('li',{class:{'active': _vm.active===tab},on:{"click":function($event){_vm.clickTab(tab);}}},[_vm._s(tab.meta.title),_h('span',{staticClass:"btn-close",on:{"click":function($event){$event.stopPropagation();_vm.close(tab);}}},["×"])])})])])," ",_h('div',{ref:"contentWrapEl",staticClass:"tabs-content-wrapper"})])},
+staticRenderFns: [],
+    data: function data () {
+        return {
+            tabs: [],
+            active: null
+        }
+    },
+    beforeCreate: function beforeCreate () {
+        this.tabSize = 0;
+        this.tabMap = {};
+        this.$taber.vm = this;
+    },
+    methods: {
+        appendContent: function appendContent (tab) {
+            var Component = cached[tab.name] || (cached[tab.name] = this.getVue().extend(tab.meta.component));
+            // Component.prototype.$tab = tab
+            var $el = document.createElement('div');
+            var instance = new Component({
+                el: $el,
+                __taber: this.$taber,
+                parent: this,
+                $tab: tab
+            });
+            tab.content = instance;
+            instance.$el.classList.add('tabs-content');
+            this.$refs.contentWrapEl.appendChild(instance.$el);
+        },
+        clickTab: function clickTab (tab) {
+            this.select(tab);
+        },
+        close: function close (tab) {
+            if (!tab) {
+                return
+            }
+
+            var hocks = [].concat( this.$taber.beforeCloseHocks );
+            if (tab.meta.beforeClose && isFunction(tab.meta.beforeClose)) {
+                hocks.push(tab.meta.beforeClose);
+            }
+            hocks.push(_close);
+            var i = 0;
+            var _this = this;
+            function next (target) {
+                if (target == null) {
+                    hocks[++i].call(_this, tab, next);
+                } else if (target === false) {
+                    return
+                }
+            }
+            hocks[0].call(_this, tab, next);
+
+            function _close () {
+                tab.content.$destroy();
+                tab.content.$el.remove();
+                this.tabMap[tabIdGen(tab)] = null;
+                var index = this.tabs.indexOf(tab);
+                if (index === -1) {
+                    return
+                }
+                this.tabs.splice(index, 1);
+
+                if (this.tabs.length > 0 && this.active === tab) {
+                    if (index < this.tabs.length) {
+                        this.select(this.tabs[index]);
+                    } else {
+                        this.select(this.tabs[this.tabs.length - 1]);
+                    }
+                } else if (this.tabs.length === 0) {
+                    this.$emit(EVENT_ACTIVE_CHANGE, null, tab);
+                }
+                this.$emit(EVENT_CLOSE, tab);
+            }
+        },
+        create: function create (tab) {
+            var this$1 = this;
+
+            var hocks = [].concat( this.$taber.beforeCreateHocks );
+            if (tab.meta.beforeCreate && isFunction(tab.meta.beforeCreate)) {
+                hocks.push(tab.meta.beforeCreate);
+            }
+
+            var i = 0;
+            var _this = this;
+            var next = function (target) {
+                if (target == null) {
+                    hocks[++i].call(_this, tab, next);
+                } else if (target === false) {
+                    return
+                } else {
+                    if (isString(target) && target === tab.name) {
+                        hocks[++i].call(_this, tab, next);
+                    } else if (isObject(target) && target.name === tab.name) {
+                        hocks[++i].call(_this, tab, next);
+                    } else {
+                        _this.$taber.open(target);
+                    }
+                }
+            };
+            hocks.push(function () {
+                this$1.tabs.push(tab);
+                this$1.appendContent(tab);
+                this$1.select(tab);
+                var id = tabIdGen(tab.name, tab.key);
+                this$1.tabMap[id] = tab;
+
+                next = null;
+                hocks = null;
+            });
+
+            hocks[0].call(this, tab, next);
+        },
+        findOpenTab: function findOpenTab (name, key) {
+            var id = tabIdGen(name, key);
+            return this.tabMap[id]
+        },
+        select: function select (tab) {
+            if (!tab || tab === this.active) {
+                return
+            }
+            this.$emit(EVENT_ACTIVE_CHANGE, tab, this.active);
+            this.active = tab;
+        }
+    },
+    watch: {
+        active: function active (tab, otab) {
+            if (!tab || tab === otab) {
+                return
+            }
+            this.tabs.forEach(function (ftab) {
+                if (ftab.name === tab.name) {
+                    ftab.content.$el.classList.add('active');
+                } else {
+                    ftab.content.$el.classList.remove('active');
+                }
+            });
+        }
+    }
+};
+
+function install (Vue) {
+    if (install.installed) {
+        return
+    }
+    install.installed = true;
+
+    Object.defineProperty(Vue.prototype, '$taber', {
+        get: function get () {
+            return this.$root._taber
+        }
+    });
+
+    Object.defineProperty(Vue.prototype, '$tab', {
+        get: function get$1 () {
+            return this.$options.$tab
+        }
+    });
+
+    TabsView.methods.getVue = function () { return Vue; };
+    Vue.component('VueTabs', TabsView);
+
+    Vue.mixin({
+        beforeCreate: function beforeCreate () {
+            if (this.$options.taber) {
+                this._taber = this.$options.taber;
+            } else if (this.$options.__taber) {
+                this._taber = this.$options.__taber;
+            }
+        }
+    });
+}
+
+var allEvents = ['vue-tabs-close', 'vue-tabs-active-change'];
+var VueTaber$1 = function VueTaber$1 (options) {
+    var this$1 = this;
+
+    var ops_tabs = options.tabs;
+    this._tabsMap = {};
+    ops_tabs.forEach(function (tab) {
+        this$1._tabsMap[tab.name] = tab;
+    });
+
+    this.beforeCreateHocks = [];
+    this.beforeCloseHocks = [];
+
+    this._events = {};
+};
+
+var prototypeAccessors = { vm: {} };
+
+VueTaber$1.prototype.findTab = function findTab (tab) {
+    if (!tab) {
+        return null
+    }
+    var name;
+    if (isString(tab)) {
+        name = tab;
+    } else {
+        name = tab.name;
+    }
+    return this._tabsMap[name]
+};
+
+VueTaber$1.prototype.open = function open (tab) {
+    if (isString(tab)) {
+        tab = {name: tab};
+    }
+    var meta = this.findTab(tab);
+    if (!meta) {
+        console.error(("The Tab [" + (tab.name) + "] is not defined!"));
+        return
+    }
+    tab.meta = meta;
+    var findedTab = this.vm.findOpenTab(tab.name, tab.key);
+    if (!findedTab) {
+        this.vm.create(tab);
+    } else {
+        this.vm.select(findedTab);
+    }
+};
+
+VueTaber$1.prototype.close = function close (tab) {
+    if (isString(tab)) {
+        tab = {name: tab};
+    }
+    var meta = this.findTab(tab);
+    if (!meta) {
+        console.error(("The Tab [" + (tab.name) + "] is not defined!"));
+        return
+    }
+    tab.meta = meta;
+    var findedTab = this.vm.findOpenTab(tab.name, tab.key);
+    this.vm.close(findedTab);
+};
+
+VueTaber$1.prototype.select = function select (tab) {
+    if (isString(tab)) {
+        tab = {name: tab};
+    }
+    var findedTab = this.vm.findOpenTab(tab.name, tab.key);
+    this.vm.select(findedTab);
+};
+
+VueTaber$1.prototype.$on = function $on (event, call) {
+    if (!event || !isFunction(call)) {
+        console.log('$on error event:[' + event + '], call:' + call);
+        return
+    }
+    if (!this._events[event]) {
+        this._events[event] = [];
+        }
+    this._events[event].push(call);
+};
+
+VueTaber$1.prototype.$off = function $off (event, call) {
+    if (!event) {
+        return
+    }
+    var listeners = this._events[event] || [];
+    if (call) {
+        var index = listeners.indexOf(call);
+        if (index !== -1) {
+            listeners.splice(index, 1);
+        }
+    } else {
+        this._events[event] = [];
+    }
+};
+
+VueTaber$1.prototype.beforeCreateEach = function beforeCreateEach (fn) {
+    if (!isFunction(fn)) {
+        return
+    }
+    this.beforeCreateHocks.push(fn);
+};
+
+VueTaber$1.prototype.beforeCloseEach = function beforeCloseEach (fn) {
+    if (!isFunction(fn)) {
+        return
+    }
+    this.beforeCloseHocks.push(fn);
+};
+
+prototypeAccessors.vm.set = function (vm) {
+        var this$1 = this;
+
+    this._vm = vm;
+    var _this = this;
+    allEvents.forEach(function (event) {
+        vm.$on(event, function () {
+                var args = [], len = arguments.length;
+                while ( len-- ) args[ len ] = arguments[ len ];
+
+            var listeners = this$1._events[event] || [];
+            listeners.forEach(function (listener) {
+                listener.apply(_this, args);
+            });
+        });
+    });
+};
+
+prototypeAccessors.vm.get = function () {
+    return this._vm
+};
+
+Object.defineProperties( VueTaber$1.prototype, prototypeAccessors );
+
+VueTaber$1.install = install;
+
+if (window.Vue) {
+    window.Vue.use(VueTaber$1);
+}
+
+return VueTaber$1;
+
+})));

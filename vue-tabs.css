@@ -1,0 +1,69 @@
+.vue-tabs {
+  position: relative;
+}
+.tabs-list-wrapper {
+  padding: 0px 8px;
+}
+.tabs-list {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: auto;
+  width: auto;
+  zoom: 1;
+}
+.tabs-list > li {
+  float: left;
+  padding: 6px 18px;
+  position: relative;
+  color: #999;
+}
+.tabs-list > li.active {
+  color: #333;
+}
+.tabs-list > li.active:after {
+  content: ' ';
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 2px;
+  background-color: #1ab394;
+  left: 0px;
+}
+.tabs-list > li.active .btn-close {
+  opacity: 1;
+}
+.tabs-list > li:hover {
+  cursor: pointer;
+}
+.tabs-list > li:hover .btn-close {
+  opacity: 1;
+}
+.tabs-list > li .btn-close {
+  position: absolute;
+  display: inline-block;
+  opacity: 0;
+  top: 2px;
+  right: 0px;
+  line-height: 12px;
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+  font-size: 12px;
+  color: #999;
+  transition: all 0.2s ease;
+}
+.tabs-list > li .btn-close:hover {
+  color: #333;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+.tabs-content-wrapper {
+  position: relative;
+}
+.tabs-content-wrapper .tabs-content {
+  display: none;
+}
+.tabs-content-wrapper .tabs-content.active {
+  display: block;
+}

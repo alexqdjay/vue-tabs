@@ -1,4 +1,4 @@
-import TabsView from './Tabs'
+import TabsView from './Tabs.vue'
 export default function install (Vue) {
     if (install.installed) {
         return
