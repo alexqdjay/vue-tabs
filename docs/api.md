@@ -49,3 +49,12 @@ The **tab object** represents the state of current Tab, it contains **config inf
 
   the config info
 
+
+## Events
+
+- **`vue-tabs-active-change: function (tab)`**: emit when atived tab changed
+- **`ue-tabs-close: function (tab)`**: emit when tab closed
+
+
+The handler function of these two events would be provided the `tab` (Tab Object) as the argument.
+
