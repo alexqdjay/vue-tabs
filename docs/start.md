@@ -1,4 +1,4 @@
-＃Getting Start
+# Getting Start
 
 A Single-Page application with vue + vue-tabs is so easy to dev, the only one thing to do is map our `Component` to our `Tab`. Here is a basic Example:
 

@@ -1,8 +1,8 @@
-＃ Installation
+# Installation
 
 ### Direct Link
 
-include the `vue` and ｀vue-tabs｀, then it will be installed automatically
+include the `vue` and `vue-tabs`, then it will be installed automatically
 
 ``` html
 <script src="/path/to/vue.js"></script>
