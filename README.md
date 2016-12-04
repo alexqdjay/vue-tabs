@@ -1,6 +1,8 @@
 # vue-tabs
 
-> A Vue.js tabs framework (多tab页轻型框架)
+> A Vue.js tabs framework replacing the URL-ROUTER (多tab页轻型框架，在多tab系统中替代路由)
+
+ ![image](https://github.com/alexqdjay/vue-tabs/blob/v0.1/example/assets/shot.png)
 
 ## Usage
 
