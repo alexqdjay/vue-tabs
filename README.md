@@ -6,7 +6,7 @@
 
 [查看 DEMO](http://alexqdjay.oschina.io/vue-tab)
 
-![image](https://github.com/alexqdjay/vue-tabs/blob/v0.1/example/assets/shot.png)
+![image](./example/assets/shot.png)
 
 ## Usage
 
