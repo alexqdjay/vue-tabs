@@ -6,6 +6,7 @@
   "main": "vue-tabs.js",
   "scripts": {
     "dev": "node build/dev-server.js",
+    "build:example": "node build/build.js",
     "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs vue-tabs.js -cm --comments -o vue-tabs.min.js",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",

@@ -1,12 +1,14 @@
-# vue-tabs
+# Vue-Tabs
 
-> A Vue.js tabs framework replacing the URL-ROUTER (多tab页轻型框架，在多tab系统中替代路由)
+> A Vue.js tabs framework replacing the URL-ROUTER for Vue2.0 (多tab页轻型框架，在多tab系统中替代路由)
+
+## Screenshots  
 
  ![image](https://github.com/alexqdjay/vue-tabs/blob/v0.1/example/assets/shot.png)
 
 ## Usage
 
-Step1. config
+**Step1. config**
 
 ``` JavaScript
 // tabs.js
@@ -25,7 +27,7 @@ export default [{
 }]
 ```
 
-Step2. New instance & use
+**Step2. New instance & use**
 
 ``` JavaScript
 import VueTaber from 'vue-tabs'
@@ -48,7 +50,7 @@ new Vue({
 
 ```
 
-Step3. Html Element
+**Step3. Html Element**
 
 ``` html
 <div id="app">
@@ -56,7 +58,7 @@ Step3. Html Element
 </div>
 ```
 
-Step4. Use api to open a tab
+**Step4. Use api to open a tab**
 
 ``` JavaScript
 this.$taber.open({
