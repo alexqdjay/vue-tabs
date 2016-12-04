@@ -57,21 +57,21 @@ export default {
                 return
             }
 
-            const hocks = [...this.$taber.beforeCloseHocks]
+            const hooks = [...this.$taber.beforeCloseHooks]
             if (tab.meta.beforeClose && isFunction(tab.meta.beforeClose)) {
-                hocks.push(tab.meta.beforeClose)
+                hooks.push(tab.meta.beforeClose)
             }
-            hocks.push(_close)
+            hooks.push(_close)
             let i = 0
             const _this = this
             function next (target) {
                 if (target == null) {
-                    hocks[++i].call(_this, tab, next)
+                    hooks[++i].call(_this, tab, next)
                 } else if (target === false) {
                     return
                 }
             }
-            hocks[0].call(_this, tab, next)
+            hooks[0].call(_this, tab, next)
 
             function _close () {
                 tab.content.$destroy()
@@ -96,29 +96,29 @@ export default {
             }
         },
         create (tab) {
-            let hocks = [...this.$taber.beforeCreateHocks]
+            let hooks = [...this.$taber.beforeCreateHooks]
             if (tab.meta.beforeCreate && isFunction(tab.meta.beforeCreate)) {
-                hocks.push(tab.meta.beforeCreate)
+                hooks.push(tab.meta.beforeCreate)
             }
 
             let i = 0
             let _this = this
             let next = function (target) {
                 if (target == null) {
-                    hocks[++i].call(_this, tab, next)
+                    hooks[++i].call(_this, tab, next)
                 } else if (target === false) {
                     return
                 } else {
                     if (isString(target) && target === tab.name) {
-                        hocks[++i].call(_this, tab, next)
+                        hooks[++i].call(_this, tab, next)
                     } else if (isObject(target) && target.name === tab.name) {
-                        hocks[++i].call(_this, tab, next)
+                        hooks[++i].call(_this, tab, next)
                     } else {
                         _this.$taber.open(target)
                     }
                 }
             }
-            hocks.push(() => {
+            hooks.push(() => {
                 this.tabs.push(tab)
                 this.appendContent(tab)
                 this.select(tab)
@@ -126,10 +126,10 @@ export default {
                 this.tabMap[id] = tab
 
                 next = null
-                hocks = null
+                hooks = null
             })
 
-            hocks[0].call(this, tab, next)
+            hooks[0].call(this, tab, next)
         },
         findOpenTab (name, key) {
             const id = tabIdGen(name, key)

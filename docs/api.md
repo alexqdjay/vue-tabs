@@ -30,12 +30,12 @@ Only **One VueTaber** exists in our system, it's `this.$taber` inside component
 
 - **taber.$off(event[, callback])**
 
-- **taber.beforeCreateEach(hockFn)**
+- **taber.beforeCreateEach(hookFn)**
 
   add global guards.
 
 
-- **taber.beforeCloseEach(hockFn)**
+- **taber.beforeCloseEach(hookFn)**
 
 
 ## Tab Object

@@ -10,8 +10,8 @@ export default class VueTaber {
             this._tabsMap[tab.name] = tab
         })
 
-        this.beforeCreateHocks = []
-        this.beforeCloseHocks = []
+        this.beforeCreateHooks = []
+        this.beforeCloseHooks = []
 
         this._events = {}
     }
@@ -99,14 +99,14 @@ export default class VueTaber {
         if (!isFunction(fn)) {
             return
         }
-        this.beforeCreateHocks.push(fn)
+        this.beforeCreateHooks.push(fn)
     }
 
     beforeCloseEach (fn) {
         if (!isFunction(fn)) {
             return
         }
-        this.beforeCloseHocks.push(fn)
+        this.beforeCloseHooks.push(fn)
     }
 
     set vm (vm) {
