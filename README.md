@@ -2,9 +2,11 @@
 
 > A Vue.js tabs framework replacing the URL-ROUTER for Vue2.0 (多tab页轻型框架，在多tab系统中替代路由)
 
-## Screenshots  
+## Demo  
 
- ![image](https://github.com/alexqdjay/vue-tabs/blob/v0.1/example/assets/shot.png)
+[demo](http://carryguan.me/flex-add/fb1.html)
+
+![image](https://github.com/alexqdjay/vue-tabs/blob/v0.1/example/assets/shot.png)
 
 ## Usage
 
