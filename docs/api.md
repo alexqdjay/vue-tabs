@@ -10,7 +10,7 @@ Only **One VueTaber** exists in our system, it's `this.$taber` inside component
 
   - param type: Object/String
 
-  open a Tab, if it has be existed it would be setted `ative`, it would be created.
+  Open a Tab, if it has be existed it would be setted `ative`, it would be created.
 
   ``` js
   this.$taber.open('home') // open the tab named 'home'
@@ -38,7 +38,7 @@ Only **One VueTaber** exists in our system, it's `this.$taber` inside component
 - **taber.beforeCloseEach(hockFn)**
 
 
-### Tab Object
+## Tab Object
 
 The **tab object** represents the state of current Tab, it contains **config info**
 
