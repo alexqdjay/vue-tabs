@@ -70,5 +70,7 @@ this.$taber.open({
 })
 ```
 
+## Contributing
+
 **[Contributing](./.github/CONTRIBUTING.md)**
 
