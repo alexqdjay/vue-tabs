@@ -2,6 +2,8 @@
 
 > A Vue.js tabs framework replacing the URL-ROUTER for Vue2.0 (多tab页轻型框架，在多tab系统中替代路由)
 
+- [Documentation](./docs)
+
 ## Demo  
 
 [查看 DEMO](http://alexqdjay.oschina.io/vue-tab)
@@ -66,27 +68,4 @@ new Vue({
 this.$taber.open({
     name: item.name
 })
-```
-
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
