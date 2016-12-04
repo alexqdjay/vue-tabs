@@ -4,7 +4,7 @@
 
 ## Demo  
 
-[demo](http://carryguan.me/flex-add/fb1.html)
+[demo](http://alexqdjay.oschina.io/vue-tab)
 
 ![image](https://github.com/alexqdjay/vue-tabs/blob/v0.1/example/assets/shot.png)
 
