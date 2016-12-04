@@ -19,8 +19,8 @@ export default {
                 text: '测试2',
                 name: 'test2'
             }, {
-                text: '测试3',
-                name: 'test3'
+                text: '异步组件',
+                name: 'async'
             }, {
                 text: '设置',
                 name: 'setting'

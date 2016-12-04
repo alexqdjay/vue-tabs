@@ -36,18 +36,44 @@ export default {
     },
     methods: {
         appendContent (tab) {
-            const Component = cached[tab.name] || (cached[tab.name] = this.getVue().extend(tab.meta.component))
-            // Component.prototype.$tab = tab
-            const $el = document.createElement('div')
-            const instance = new Component({
-                el: $el,
-                __taber: this.$taber,
-                parent: this,
-                $tab: tab
+            let Component = cached[tab.name]
+            const _this = this
+            let promise
+            if (!Component) {
+                if (isFunction(tab.meta.component)) {
+                    const asyncFn = tab.meta.component
+                    promise = new Promise(asyncFn).then((Component) => {
+                        Component = cached[tab.name] = _this.getVue().extend(Component)
+                        return Component
+                    })
+                } else {
+                    promise = Promise.resolve(tab.meta.component).then((Component) => {
+                        Component = cached[tab.name] = _this.getVue().extend(Component)
+                        return Component
+                    })
+                }
+            } else {
+                promise = Promise.resolve(Component)
+            }
+
+            promise.then((Component) => {
+                newInstance(Component)
             })
-            tab.content = instance
-            instance.$el.classList.add('tabs-content')
-            this.$refs.contentWrapEl.appendChild(instance.$el)
+
+            return promise
+
+            function newInstance (Component) {
+                const $el = document.createElement('div')
+                _this.$refs.contentWrapEl.appendChild($el)
+                const instance = new Component({
+                    el: $el,
+                    __taber: _this.$taber,
+                    parent: _this,
+                    $tab: tab
+                })
+                tab.content = instance
+                instance.$el.classList.add('tabs-content')
+            }
         },
         clickTab (tab) {
             this.select(tab)
@@ -120,8 +146,9 @@ export default {
             }
             hooks.push(() => {
                 this.tabs.push(tab)
-                this.appendContent(tab)
-                this.select(tab)
+                this.appendContent(tab).then(() => {
+                    this.select(tab)
+                })
                 const id = tabIdGen(tab.name, tab.key)
                 this.tabMap[id] = tab
 

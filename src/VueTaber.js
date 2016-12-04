@@ -71,7 +71,7 @@ export default class VueTaber {
 
     $on (event, call) {
         if (!event || !isFunction(call)) {
-            console.log('$on error event:[' + event + '], call:' + call)
+            console.error('$on error event:[' + event + '], call:' + call)
             return
         }
         if (!this._events[event]) {
