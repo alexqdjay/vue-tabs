@@ -34,7 +34,7 @@ export default [{
     component: resolve => {
         setTimeout(() => {
             resolve({
-                template: '<h2>我是异步组件</h2>'
+                template: '<h2>我是异步组件, 我也是受害者</h2>'
             })
         }, 1000)
     }

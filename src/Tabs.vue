@@ -2,7 +2,7 @@
 <div class="vue-tabs">
     <div class="tabs-list-wrapper">
         <ul class="tabs-list">
-            <li v-for="tab in tabs" :class="{'active': active===tab}" @click="clickTab(tab)">{{tab.meta.title}}<span class="btn-close" @click.stop="close(tab)">&times;</span></li>
+            <li v-for="tab in tabs" :class="{'active': active===tab, 'loading': active===tab && loading}" @click="clickTab(tab)">{{tab.meta.title}}<span class="btn-close" @click.stop="close(tab)">&times;</span></li>
         </ul>
     </div>
     <div class="tabs-content-wrapper" ref="contentWrapEl">
@@ -26,6 +26,7 @@ export default {
     data () {
         return {
             tabs: [],
+            loading: false,
             active: null
         }
     },
@@ -42,6 +43,7 @@ export default {
             if (!Component) {
                 if (isFunction(tab.meta.component)) {
                     const asyncFn = tab.meta.component
+                    this.loading = true
                     promise = new Promise(asyncFn).then((Component) => {
                         Component = cached[tab.name] = _this.getVue().extend(Component)
                         return Component
@@ -146,9 +148,10 @@ export default {
             }
             hooks.push(() => {
                 this.tabs.push(tab)
-                this.appendContent(tab).then(() => {
-                    this.select(tab)
+                const p = this.appendContent(tab).then(() => {
+                    this.loading = false
                 })
+                this.select(tab, p)
                 const id = tabIdGen(tab.name, tab.key)
                 this.tabMap[id] = tab
 
@@ -162,12 +165,18 @@ export default {
             const id = tabIdGen(name, key)
             return this.tabMap[id]
         },
-        select (tab) {
+        select (tab, promise) {
             if (!tab || tab === this.active) {
                 return
             }
             this.$emit(EVENT_ACTIVE_CHANGE, tab, this.active)
             this.active = tab
+            if (!promise) {
+                promise = Promise.resolve()
+            }
+            promise.then(() => {
+                tab.content.$el.classList.add('active')
+            })
         }
     },
     watch: {
@@ -176,9 +185,7 @@ export default {
                 return
             }
             this.tabs.forEach((ftab) => {
-                if (ftab.name === tab.name) {
-                    ftab.content.$el.classList.add('active')
-                } else {
+                if (tabIdGen(ftab.name, ftab.key) !== tabIdGen(tab.name, tab.key)) {
                     ftab.content.$el.classList.remove('active')
                 }
             })
@@ -186,13 +193,23 @@ export default {
     }
 }
 </script>
-<style >
+<style lang="less">
 .vue-tabs {
     position: relative;
 }
 
 .tabs-list-wrapper {
     padding: 0px 8px;
+}
+
+@keyframes loading-rotate {
+    from {transform: rotate(0);}
+    to {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes loading-rotate {
+    from {transform: rotate(0);}
+    to {transform: rotate(360deg);}
 }
 
 .tabs-list {
@@ -208,6 +225,23 @@ export default {
         padding: 6px 18px;
         position: relative;
         color: #999;
+
+        &.loading:before {
+            content: ' ';
+            box-sizing: border-box;
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            left: 0px;
+            top: 10px;
+            border-radius: 9px;
+            border: 2px solid #1ab394;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            animation: loading-rotate .8s infinite linear;
+            -webkit-animation: loading-rotate .8s infinite linear;
+        }
 
         &.active {
             color: #333;
