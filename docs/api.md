@@ -12,12 +12,17 @@ Only **One VueTaber** exists in our system, it's `this.$taber` inside component
 
   Open a Tab, if it has be existed it would be setted `ative`, it would be created.
 
+  `key` is a field of param, when the param is a object, and it is optional. The ID of tab equals it's name plus it's key, so if name is 'user' and key is '002', the ID would be 'user#002'.
+
+  If has the same name but key is different，that would create two tabs.
+
   ``` js
   this.$taber.open('home') // open the tab named 'home'
 
   // or object
   this.$taber.open({
-    name: 'home'
+    name: 'home',
+    key: user.id
   })
   ```
 
