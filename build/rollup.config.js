@@ -25,6 +25,7 @@ export default {
     banner: `/**
  * vue-tabs v${version}
  * (c) ${new Date().getFullYear()} ALEXQDJAY
- * @license MIT
+ * mail: alexqdjay@126.com
+ * @license Apache2
  */`
 }

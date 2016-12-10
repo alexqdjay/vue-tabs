@@ -1,7 +1,8 @@
 /**
- * vue-tabs v0.1.0
+ * vue-tabs v0.2.0
  * (c) 2016 ALEXQDJAY
- * @license MIT
+ * mail: alexqdjay@126.com
+ * @license Apache2
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -30,6 +31,39 @@ function isObject (obj) {
     return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
+var store = {
+    save: function save (key, value) {
+        if (!key || !value) {
+            return
+        }
+        window.localStorage[key] = JSON.stringify(value);
+    },
+    get: function get (key) {
+        var value = window.localStorage[key];
+        if (!value) {
+            return null
+        }
+        return JSON.parse(value)
+    }
+};
+
+var consts = {
+    STORE_KEY: '$TABS'
+};
+
+var Tab = {
+render: function(){var _vm=this;var _h=_vm.$createElement;return _h('li',{class:{'active': _vm.tabData.active, 'loading': _vm.tabData.loading}},[_vm._s(_vm.tabData.meta.title),_h('span',{staticClass:"btn-close",on:{"click":function($event){$event.stopPropagation();_vm.close($event);}}},["×"])])},
+staticRenderFns: [],
+    props: {
+        tabData: Object
+    },
+    methods: {
+        close: function close () {
+            this.$emit('close', this.tabData);
+        }
+    }
+};
+
 function tabIdGen (tabName, tabKey) {
     if ( tabKey === void 0 ) tabKey = '';
 
@@ -44,8 +78,9 @@ var EVENT_ACTIVE_CHANGE = 'vue-tabs-active-change';
 var EVENT_CLOSE = 'vue-tabs-close';
 var cached = {};
 var TabsView = {
-render: function(){var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"vue-tabs"},[_h('div',{staticClass:"tabs-list-wrapper"},[_h('ul',{staticClass:"tabs-list"},[_vm._l((_vm.tabs),function(tab){return _h('li',{class:{'active': _vm.active===tab},on:{"click":function($event){_vm.clickTab(tab);}}},[_vm._s(tab.meta.title),_h('span',{staticClass:"btn-close",on:{"click":function($event){$event.stopPropagation();_vm.close(tab);}}},["×"])])})])])," ",_h('div',{ref:"contentWrapEl",staticClass:"tabs-content-wrapper"})])},
+render: function(){var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"vue-tabs"},[_h('div',{staticClass:"tabs-list-wrapper"},[_h('ul',{staticClass:"tabs-list"},[_vm._l((_vm.tabs),function(tab){return _h('tab',{attrs:{"tab-data":tab},on:{"close":function($event){_vm.close(tab);}},nativeOn:{"click":function($event){_vm.clickTab(tab);}}})})])])," ",_h('div',{ref:"contentWrapEl",staticClass:"tabs-content-wrapper"})])},
 staticRenderFns: [],
+    components: {Tab: Tab},
     data: function data () {
         return {
             tabs: [],
@@ -55,46 +90,79 @@ staticRenderFns: [],
     beforeCreate: function beforeCreate () {
         this.tabSize = 0;
         this.tabMap = {};
+    },
+    created: function created () {
         this.$taber.vm = this;
+    },
+    mounted: function mounted () {
+        this.$taber.mounted();
     },
     methods: {
         appendContent: function appendContent (tab) {
-            var Component = cached[tab.name] || (cached[tab.name] = this.getVue().extend(tab.meta.component));
-            // Component.prototype.$tab = tab
-            var $el = document.createElement('div');
-            var instance = new Component({
-                el: $el,
-                __taber: this.$taber,
-                parent: this,
-                $tab: tab
+            var Component = cached[tab.name];
+            var _this = this;
+            var promise;
+            if (!Component) {
+                if (isFunction(tab.meta.component)) {
+                    var asyncFn = tab.meta.component;
+                    this.$set(tab, 'loading', true);
+                    promise = new Promise(asyncFn).then(function (Component) {
+                        return (cached[tab.name] = _this.getVue().extend(Component))
+                    });
+                } else {
+                    promise = Promise.resolve(tab.meta.component).then(function (Component) {
+                        return (cached[tab.name] = _this.getVue().extend(Component))
+                    });
+                }
+            } else {
+                promise = Promise.resolve(Component);
+            }
+
+            promise.then(function (Component) {
+                newInstance(Component);
             });
-            tab.content = instance;
-            instance.$el.classList.add('tabs-content');
-            this.$refs.contentWrapEl.appendChild(instance.$el);
+
+            return promise
+
+            function newInstance (Component) {
+                var $el = document.createElement('div');
+                _this.$refs.contentWrapEl.appendChild($el);
+                var instance = new Component({
+                    el: $el,
+                    __taber: _this.$taber,
+                    parent: _this,
+                    $tab: tab
+                });
+
+                tab.content = instance;
+                instance.$el.classList.add('tabs-content');
+            }
         },
         clickTab: function clickTab (tab) {
-            this.select(tab);
+            if (tab && !tab.active) {
+                this.select(tab);
+            }
         },
         close: function close (tab) {
             if (!tab) {
                 return
             }
 
-            var hocks = [].concat( this.$taber.beforeCloseHocks );
+            var hooks = [].concat( this.$taber.beforeCloseHooks );
             if (tab.meta.beforeClose && isFunction(tab.meta.beforeClose)) {
-                hocks.push(tab.meta.beforeClose);
+                hooks.push(tab.meta.beforeClose);
             }
-            hocks.push(_close);
+            hooks.push(_close);
             var i = 0;
             var _this = this;
             function next (target) {
                 if (target == null) {
-                    hocks[++i].call(_this, tab, next);
+                    hooks[++i].call(_this, tab, next);
                 } else if (target === false) {
                     return
                 }
             }
-            hocks[0].call(_this, tab, next);
+            hooks[0].call(_this, tab, next);
 
             function _close () {
                 tab.content.$destroy();
@@ -114,6 +182,7 @@ staticRenderFns: [],
                     }
                 } else if (this.tabs.length === 0) {
                     this.$emit(EVENT_ACTIVE_CHANGE, null, tab);
+                    this._saveTabs();
                 }
                 this.$emit(EVENT_CLOSE, tab);
             }
@@ -121,65 +190,94 @@ staticRenderFns: [],
         create: function create (tab) {
             var this$1 = this;
 
-            var hocks = [].concat( this.$taber.beforeCreateHocks );
+            var hooks = [].concat( this.$taber.beforeCreateHooks );
             if (tab.meta.beforeCreate && isFunction(tab.meta.beforeCreate)) {
-                hocks.push(tab.meta.beforeCreate);
+                hooks.push(tab.meta.beforeCreate);
             }
 
             var i = 0;
             var _this = this;
             var next = function (target) {
                 if (target == null) {
-                    hocks[++i].call(_this, tab, next);
+                    hooks[++i].call(_this, tab, next);
                 } else if (target === false) {
                     return
                 } else {
                     if (isString(target) && target === tab.name) {
-                        hocks[++i].call(_this, tab, next);
+                        hooks[++i].call(_this, tab, next);
                     } else if (isObject(target) && target.name === tab.name) {
-                        hocks[++i].call(_this, tab, next);
+                        hooks[++i].call(_this, tab, next);
                     } else {
                         _this.$taber.open(target);
                     }
                 }
             };
-            hocks.push(function () {
+            hooks.push(function () {
                 this$1.tabs.push(tab);
-                this$1.appendContent(tab);
-                this$1.select(tab);
+                var p = this$1.appendContent(tab).then(function () {
+                    this$1.$set(tab, 'loading', false);
+                });
+                tab.promise = p;
+                if (tab.active !== false) {
+                    this$1.select(tab);
+                } else {
+                    this$1._saveTabs();
+                }
                 var id = tabIdGen(tab.name, tab.key);
                 this$1.tabMap[id] = tab;
 
                 next = null;
-                hocks = null;
+                hooks = null;
             });
 
-            hocks[0].call(this, tab, next);
+            hooks[0].call(this, tab, next);
         },
         findOpenTab: function findOpenTab (name, key) {
             var id = tabIdGen(name, key);
             return this.tabMap[id]
         },
         select: function select (tab) {
-            if (!tab || tab === this.active) {
+            var this$1 = this;
+
+            if (!tab) {
                 return
             }
+            this.$set(tab, 'active', true);
             this.$emit(EVENT_ACTIVE_CHANGE, tab, this.active);
             this.active = tab;
-        }
-    },
-    watch: {
-        active: function active (tab, otab) {
-            if (!tab || tab === otab) {
-                return
-            }
             this.tabs.forEach(function (ftab) {
-                if (ftab.name === tab.name) {
-                    ftab.content.$el.classList.add('active');
-                } else {
-                    ftab.content.$el.classList.remove('active');
+                if (tabIdGen(ftab.name, ftab.key) !== tabIdGen(tab.name, tab.key)) {
+                    this$1.$set(ftab, 'active', false);
+                    if (ftab.content && ftab.content.$el) {
+                        ftab.content.$el.classList.remove('active');
+                    }
                 }
             });
+            this._saveTabs();
+            var promise = tab.promise;
+            if (!promise) {
+                promise = Promise.resolve();
+            }
+            promise.then(function () {
+                if (tab.active && tab.content) {
+                    tab.content.$el.classList.add('active');
+                    tab.promise = null;
+                }
+            });
+        },
+        _saveTabs: function _saveTabs () {
+            if (!this.$taber.persist) {
+                return
+            }
+            var toSave = this.tabs.map(function (v) {
+                return {
+                    name: v.name,
+                    key: v.key,
+                    params: v.params,
+                    active: v.active
+                }
+            });
+            store.save(consts.STORE_KEY, toSave);
         }
     }
 };
@@ -221,15 +319,17 @@ var VueTaber$1 = function VueTaber$1 (options) {
     var this$1 = this;
 
     var ops_tabs = options.tabs;
+    var persist = options.persist;
     this._tabsMap = {};
     ops_tabs.forEach(function (tab) {
         this$1._tabsMap[tab.name] = tab;
     });
 
-    this.beforeCreateHocks = [];
-    this.beforeCloseHocks = [];
+    this.beforeCreateHooks = [];
+    this.beforeCloseHooks = [];
 
     this._events = {};
+    this.persist = persist;
 };
 
 var prototypeAccessors = { vm: {} };
@@ -289,12 +389,12 @@ VueTaber$1.prototype.select = function select (tab) {
 
 VueTaber$1.prototype.$on = function $on (event, call) {
     if (!event || !isFunction(call)) {
-        console.log('$on error event:[' + event + '], call:' + call);
+        console.error('$on error event:[' + event + '], call:' + call);
         return
     }
     if (!this._events[event]) {
         this._events[event] = [];
-        }
+    }
     this._events[event].push(call);
 };
 
@@ -317,14 +417,33 @@ VueTaber$1.prototype.beforeCreateEach = function beforeCreateEach (fn) {
     if (!isFunction(fn)) {
         return
     }
-    this.beforeCreateHocks.push(fn);
+    this.beforeCreateHooks.push(fn);
 };
 
 VueTaber$1.prototype.beforeCloseEach = function beforeCloseEach (fn) {
     if (!isFunction(fn)) {
         return
     }
-    this.beforeCloseHocks.push(fn);
+    this.beforeCloseHooks.push(fn);
+};
+
+VueTaber$1.prototype._restoreTabs = function _restoreTabs () {
+        var this$1 = this;
+
+    if (!this.persist) {
+        return
+    }
+    var storeTabs = store.get(consts.STORE_KEY);
+    if (!storeTabs) {
+        return
+    }
+    storeTabs.forEach(function (tab) {
+        this$1.open(tab);
+    });
+    };
+
+VueTaber$1.prototype.mounted = function mounted () {
+    this._restoreTabs();
 };
 
 prototypeAccessors.vm.set = function (vm) {

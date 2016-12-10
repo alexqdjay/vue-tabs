@@ -18,3 +18,23 @@ export function isObject (obj) {
     }
     return Object.prototype.toString.call(obj) === '[object Object]'
 }
+
+export const store = {
+    save (key, value) {
+        if (!key || !value) {
+            return
+        }
+        window.localStorage[key] = JSON.stringify(value)
+    },
+    get (key) {
+        let value = window.localStorage[key]
+        if (!value) {
+            return null
+        }
+        return JSON.parse(value)
+    }
+}
+
+export const consts = {
+    STORE_KEY: '$TABS'
+}

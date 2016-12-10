@@ -29,10 +29,14 @@ export default [{
         template: '<h2>测试2</h2>'
     }
 }, {
-    name: 'test3',
-    title: '测试3',
-    component: {
-        template: '<h2>测试3</h2>'
+    name: 'async',
+    title: '异步组件',
+    component: resolve => {
+        setTimeout(() => {
+            resolve({
+                template: '<h2>我是异步组件, 我也是受害者</h2>'
+            })
+        }, 3000)
     }
 }, {
     name: 'setting',

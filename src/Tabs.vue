@@ -2,7 +2,7 @@
 <div class="vue-tabs">
     <div class="tabs-list-wrapper">
         <ul class="tabs-list">
-            <li v-for="tab in tabs" :class="{'active': active===tab}" @click="clickTab(tab)">{{tab.meta.title}}<span class="btn-close" @click.stop="close(tab)">&times;</span></li>
+            <tab v-for="tab in tabs" :tab-data="tab" @close="close(tab)" @click.native="clickTab(tab)"></tab>
         </ul>
     </div>
     <div class="tabs-content-wrapper" ref="contentWrapEl">
@@ -10,8 +10,8 @@
 </div>
 </template>
 <script>
-import {isFunction, isString, isObject} from './utils'
-
+import {isFunction, isString, isObject, store, consts} from './utils'
+import Tab from './Tab.vue'
 function tabIdGen (tabName, tabKey = '') {
     if (isObject(tabName)) {
         const {name, key = ''} = tabName
@@ -23,6 +23,7 @@ const EVENT_ACTIVE_CHANGE = 'vue-tabs-active-change'
 const EVENT_CLOSE = 'vue-tabs-close'
 const cached = {}
 export default {
+    components: {Tab},
     data () {
         return {
             tabs: [],
@@ -32,25 +33,58 @@ export default {
     beforeCreate () {
         this.tabSize = 0
         this.tabMap = {}
+    },
+    created () {
         this.$taber.vm = this
+    },
+    mounted () {
+        this.$taber.mounted()
     },
     methods: {
         appendContent (tab) {
-            const Component = cached[tab.name] || (cached[tab.name] = this.getVue().extend(tab.meta.component))
-            // Component.prototype.$tab = tab
-            const $el = document.createElement('div')
-            const instance = new Component({
-                el: $el,
-                __taber: this.$taber,
-                parent: this,
-                $tab: tab
+            let Component = cached[tab.name]
+            const _this = this
+            let promise
+            if (!Component) {
+                if (isFunction(tab.meta.component)) {
+                    const asyncFn = tab.meta.component
+                    this.$set(tab, 'loading', true)
+                    promise = new Promise(asyncFn).then((Component) => {
+                        return (cached[tab.name] = _this.getVue().extend(Component))
+                    })
+                } else {
+                    promise = Promise.resolve(tab.meta.component).then((Component) => {
+                        return (cached[tab.name] = _this.getVue().extend(Component))
+                    })
+                }
+            } else {
+                promise = Promise.resolve(Component)
+            }
+
+            promise.then((Component) => {
+                newInstance(Component)
             })
-            tab.content = instance
-            instance.$el.classList.add('tabs-content')
-            this.$refs.contentWrapEl.appendChild(instance.$el)
+
+            return promise
+
+            function newInstance (Component) {
+                const $el = document.createElement('div')
+                _this.$refs.contentWrapEl.appendChild($el)
+                const instance = new Component({
+                    el: $el,
+                    __taber: _this.$taber,
+                    parent: _this,
+                    $tab: tab
+                })
+
+                tab.content = instance
+                instance.$el.classList.add('tabs-content')
+            }
         },
         clickTab (tab) {
-            this.select(tab)
+            if (tab && !tab.active) {
+                this.select(tab)
+            }
         },
         close (tab) {
             if (!tab) {
@@ -91,6 +125,7 @@ export default {
                     }
                 } else if (this.tabs.length === 0) {
                     this.$emit(EVENT_ACTIVE_CHANGE, null, tab)
+                    this._saveTabs()
                 }
                 this.$emit(EVENT_CLOSE, tab)
             }
@@ -120,8 +155,15 @@ export default {
             }
             hooks.push(() => {
                 this.tabs.push(tab)
-                this.appendContent(tab)
-                this.select(tab)
+                const p = this.appendContent(tab).then(() => {
+                    this.$set(tab, 'loading', false)
+                })
+                tab.promise = p
+                if (tab.active !== false) {
+                    this.select(tab)
+                } else {
+                    this._saveTabs()
+                }
                 const id = tabIdGen(tab.name, tab.key)
                 this.tabMap[id] = tab
 
@@ -136,36 +178,66 @@ export default {
             return this.tabMap[id]
         },
         select (tab) {
-            if (!tab || tab === this.active) {
+            if (!tab) {
                 return
             }
+            this.$set(tab, 'active', true)
             this.$emit(EVENT_ACTIVE_CHANGE, tab, this.active)
             this.active = tab
-        }
-    },
-    watch: {
-        active (tab, otab) {
-            if (!tab || tab === otab) {
-                return
-            }
             this.tabs.forEach((ftab) => {
-                if (ftab.name === tab.name) {
-                    ftab.content.$el.classList.add('active')
-                } else {
-                    ftab.content.$el.classList.remove('active')
+                if (tabIdGen(ftab.name, ftab.key) !== tabIdGen(tab.name, tab.key)) {
+                    this.$set(ftab, 'active', false)
+                    if (ftab.content && ftab.content.$el) {
+                        ftab.content.$el.classList.remove('active')
+                    }
                 }
             })
+            this._saveTabs()
+            let promise = tab.promise
+            if (!promise) {
+                promise = Promise.resolve()
+            }
+            promise.then(() => {
+                if (tab.active && tab.content) {
+                    tab.content.$el.classList.add('active')
+                    tab.promise = null
+                }
+            })
+        },
+        _saveTabs () {
+            if (!this.$taber.persist) {
+                return
+            }
+            const toSave = this.tabs.map((v) => {
+                return {
+                    name: v.name,
+                    key: v.key,
+                    params: v.params,
+                    active: v.active
+                }
+            })
+            store.save(consts.STORE_KEY, toSave)
         }
     }
 }
 </script>
-<style >
+<style lang="less">
 .vue-tabs {
     position: relative;
 }
 
 .tabs-list-wrapper {
     padding: 0px 8px;
+}
+
+@keyframes loading-rotate {
+    from {transform: rotate(0);}
+    to {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes loading-rotate {
+    from {transform: rotate(0);}
+    to {transform: rotate(360deg);}
 }
 
 .tabs-list {
@@ -181,6 +253,23 @@ export default {
         padding: 6px 18px;
         position: relative;
         color: #999;
+
+        &.loading:before {
+            content: ' ';
+            box-sizing: border-box;
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            left: 0px;
+            top: 10px;
+            border-radius: 9px;
+            border: 2px solid #1ab394;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            animation: loading-rotate .8s infinite linear;
+            -webkit-animation: loading-rotate .8s infinite linear;
+        }
 
         &.active {
             color: #333;
