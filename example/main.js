@@ -6,7 +6,8 @@ import '../vue-tabs.css'
 import tabs from './tabs.js'
 
 const vueTaber = new VueTaber({
-    tabs
+    tabs,
+    persist: true
 })
 
 vueTaber.beforeCreateEach((tab, next) => {

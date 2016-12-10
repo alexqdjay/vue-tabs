@@ -1,10 +1,10 @@
-import {isString, isFunction} from './utils'
+import {isString, isFunction, store, consts} from './utils'
 import install from './install'
 
 const allEvents = ['vue-tabs-close', 'vue-tabs-active-change']
 export default class VueTaber {
     constructor (options) {
-        const {tabs: ops_tabs} = options
+        const {tabs: ops_tabs, persist} = options
         this._tabsMap = {}
         ops_tabs.forEach((tab) => {
             this._tabsMap[tab.name] = tab
@@ -14,6 +14,7 @@ export default class VueTaber {
         this.beforeCloseHooks = []
 
         this._events = {}
+        this.persist = persist
     }
 
     findTab (tab) {
@@ -107,6 +108,23 @@ export default class VueTaber {
             return
         }
         this.beforeCloseHooks.push(fn)
+    }
+
+    _restoreTabs () {
+        if (!this.persist) {
+            return
+        }
+        const storeTabs = store.get(consts.STORE_KEY)
+        if (!storeTabs) {
+            return
+        }
+        storeTabs.forEach((tab) => {
+            this.open(tab)
+        })
+    }
+
+    mounted () {
+        this._restoreTabs()
     }
 
     set vm (vm) {
