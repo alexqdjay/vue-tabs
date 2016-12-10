@@ -266,6 +266,9 @@ staticRenderFns: [],
             });
         },
         _saveTabs: function _saveTabs () {
+            if (!this.$taber.persist) {
+                return
+            }
             var toSave = this.tabs.map(function (v) {
                 return {
                     name: v.name,
@@ -316,6 +319,7 @@ var VueTaber$1 = function VueTaber$1 (options) {
     var this$1 = this;
 
     var ops_tabs = options.tabs;
+    var persist = options.persist;
     this._tabsMap = {};
     ops_tabs.forEach(function (tab) {
         this$1._tabsMap[tab.name] = tab;
@@ -325,6 +329,7 @@ var VueTaber$1 = function VueTaber$1 (options) {
     this.beforeCloseHooks = [];
 
     this._events = {};
+    this.persist = persist;
 };
 
 var prototypeAccessors = { vm: {} };
@@ -425,6 +430,9 @@ VueTaber$1.prototype.beforeCloseEach = function beforeCloseEach (fn) {
 VueTaber$1.prototype._restoreTabs = function _restoreTabs () {
         var this$1 = this;
 
+    if (!this.persist) {
+        return
+    }
     var storeTabs = store.get(consts.STORE_KEY);
     if (!storeTabs) {
         return
@@ -432,13 +440,13 @@ VueTaber$1.prototype._restoreTabs = function _restoreTabs () {
     storeTabs.forEach(function (tab) {
         this$1.open(tab);
     });
-};
+    };
 
 VueTaber$1.prototype.mounted = function mounted () {
     this._restoreTabs();
-    };
+};
 
-    prototypeAccessors.vm.set = function (vm) {
+prototypeAccessors.vm.set = function (vm) {
         var this$1 = this;
 
     this._vm = vm;
