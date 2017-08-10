@@ -4,7 +4,7 @@
 
 这里有个简单的例子:
 
-### Html
+## Html
 
 ``` html
 <html>
@@ -21,7 +21,7 @@
 
 ### JS
 
-### 1. Tabs Config
+### 1. 标签页定义
 
 ``` js
 import Hello from './components/Hello'

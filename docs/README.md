@@ -7,4 +7,4 @@
 1. [API](./api.md)
 1. [Lazy Loading](./lazy_loading.md)
 
-[Chinese Documentation (中文版文档)](./zh-cn/README.md)
+[zh_cn (中文版文档)](./zh-cn/README.md)

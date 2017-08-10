@@ -109,7 +109,14 @@ export default {
 
             function _close () {
                 tab.content.$destroy()
-                tab.content.$el.remove()
+                // Fix IE11 Element has no `remove`
+                if (tab.content.$el.remove) {
+                    tab.content.$el.remove()
+                } else if (tab.content.$el.removeNode) {
+                    tab.content.$el.removeNode(true)
+                } else {
+                    throw 'Element has no method named remove or removeNode'
+                }
                 this.tabMap[tabIdGen(tab)] = null
                 const index = this.tabs.indexOf(tab)
                 if (index === -1) {

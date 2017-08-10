@@ -45,7 +45,7 @@
 - **taber.beforeCloseEach(hookFn)**
 
 
-## Tab Object
+## Tab 标签数据对象
 
 **tab 对象** 代表当前标签页的状态数据, 它还包含**标签的配置信息** 
 
