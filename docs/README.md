@@ -5,4 +5,4 @@
 1. [Guards](./guards.md)
 1. [API](./api.md)
 
-[Chinese Documentation (中文版文档)](./zh-cn/README.md)
+[zh_cn (中文版文档)](./zh-cn/README.md)
