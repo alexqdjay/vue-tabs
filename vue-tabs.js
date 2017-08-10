@@ -1,6 +1,6 @@
 /**
- * vue-tabs v0.2.0
- * (c) 2016 ALEXQDJAY
+ * vue-tabs v0.2.1
+ * (c) 2017 ALEXQDJAY
  * mail: alexqdjay@126.com
  * @license Apache2
  */
@@ -52,7 +52,7 @@ var consts = {
 };
 
 var Tab = {
-render: function(){var _vm=this;var _h=_vm.$createElement;return _h('li',{class:{'active': _vm.tabData.active, 'loading': _vm.tabData.loading}},[_vm._s(_vm.tabData.meta.title),_h('span',{staticClass:"btn-close",on:{"click":function($event){$event.stopPropagation();_vm.close($event);}}},["×"])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{class:{'active': _vm.tabData.active, 'loading': _vm.tabData.loading}},[_vm._v(_vm._s(_vm.tabData.meta.title)),_c('span',{staticClass:"btn-close",on:{"click":function($event){$event.stopPropagation();_vm.close($event);}}},[_vm._v("×")])])},
 staticRenderFns: [],
     props: {
         tabData: Object
@@ -78,7 +78,7 @@ var EVENT_ACTIVE_CHANGE = 'vue-tabs-active-change';
 var EVENT_CLOSE = 'vue-tabs-close';
 var cached = {};
 var TabsView = {
-render: function(){var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"vue-tabs"},[_h('div',{staticClass:"tabs-list-wrapper"},[_h('ul',{staticClass:"tabs-list"},[_vm._l((_vm.tabs),function(tab){return _h('tab',{attrs:{"tab-data":tab},on:{"close":function($event){_vm.close(tab);}},nativeOn:{"click":function($event){_vm.clickTab(tab);}}})})])])," ",_h('div',{ref:"contentWrapEl",staticClass:"tabs-content-wrapper"})])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-tabs"},[_c('div',{staticClass:"tabs-list-wrapper"},[_c('ul',{staticClass:"tabs-list"},_vm._l((_vm.tabs),function(tab){return _c('tab',{attrs:{"tab-data":tab},on:{"close":function($event){_vm.close(tab);}},nativeOn:{"click":function($event){_vm.clickTab(tab);}}})}))]),_vm._v(" "),_c('div',{ref:"contentWrapEl",staticClass:"tabs-content-wrapper"})])},
 staticRenderFns: [],
     components: {Tab: Tab},
     data: function data () {
@@ -166,7 +166,14 @@ staticRenderFns: [],
 
             function _close () {
                 tab.content.$destroy();
-                tab.content.$el.remove();
+                // Fix IE11 Element has no `remove`
+                if (tab.content.$el.remove) {
+                    tab.content.$el.remove();
+                } else if (tab.content.$el.removeNode) {
+                    tab.content.$el.removeNode(true);
+                } else {
+                    throw 'Element has no method named remove or removeNode'
+                }
                 this.tabMap[tabIdGen(tab)] = null;
                 var index = this.tabs.indexOf(tab);
                 if (index === -1) {
