@@ -32,11 +32,14 @@ export default [{
     name: 'async',
     title: '异步组件',
     component: resolve => {
-        setTimeout(() => {
-            resolve({
-                template: '<h2>我是异步组件, 我也是受害者</h2>'
-            })
-        }, 3000)
+        require.ensure(['./components/AsyncComp.vue'], () => {
+            resolve(require('./components/AsyncComp.vue'))
+        })
+        // setTimeout(() => {
+        //     resolve({
+        //         template: '<h2>我是异步组件, 我也是受害者</h2>'
+        //     })
+        // }, 3000)
     }
 }, {
     name: 'setting',
