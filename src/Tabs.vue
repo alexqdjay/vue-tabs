@@ -2,7 +2,7 @@
 <div class="vue-tabs">
     <div class="tabs-list-wrapper">
         <ul class="tabs-list">
-            <tab v-for="tab in tabs" :tab-data="tab" @close="close(tab)" @click.native="clickTab(tab)"></tab>
+            <tab v-for="(tab, index) in tabs" :tab-data="tab" @close="close(tab)" @click.native="clickTab(tab)" :key="index"></tab>
         </ul>
     </div>
     <div class="tabs-content-wrapper" ref="contentWrapEl">
@@ -50,6 +50,9 @@ export default {
                     const asyncFn = tab.meta.component
                     this.$set(tab, 'loading', true)
                     promise = new Promise(asyncFn).then((Component) => {
+                        if (Component.__esModule) {
+                            Component = Component.default
+                        }
                         return (cached[tab.name] = _this.getVue().extend(Component))
                     })
                 } else {
@@ -101,8 +104,6 @@ export default {
             function next (target) {
                 if (target == null) {
                     hooks[++i].call(_this, tab, next)
-                } else if (target === false) {
-                    return
                 }
             }
             hooks[0].call(_this, tab, next)

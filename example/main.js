@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import App from './App'
-// import VueTaber from '../vue-tabs.js'
-import VueTaber from '../src/index.js'
+import VueTaber from '../vue-tabs.js'
+// import VueTaber from '../src/index.js'
 import '../vue-tabs.css'
 import tabs from './tabs.js'
 
 const vueTaber = new VueTaber({
     tabs,
-    persist: true
+    persist: false
 })
 
 vueTaber.beforeCreateEach((tab, next) => {
