@@ -29,7 +29,8 @@
     "url": "https://github.com/alexqdjay/vue-tabs/issues"
   },
   "files": [
-    "src/*.js"
+    "src/*.js",
+    "vue-tabs.*"
   ],
   "dependencies": {},
   "devDependencies": {
