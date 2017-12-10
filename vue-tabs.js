@@ -1,5 +1,5 @@
 /**
- * vue-tabs v0.2.1
+ * vue-tabs v0.3.0
  * (c) 2017 ALEXQDJAY
  * mail: alexqdjay@126.com
  * @license Apache2
@@ -78,7 +78,7 @@ var EVENT_ACTIVE_CHANGE = 'vue-tabs-active-change';
 var EVENT_CLOSE = 'vue-tabs-close';
 var cached = {};
 var TabsView = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-tabs"},[_c('div',{staticClass:"tabs-list-wrapper"},[_c('ul',{staticClass:"tabs-list"},_vm._l((_vm.tabs),function(tab){return _c('tab',{attrs:{"tab-data":tab},on:{"close":function($event){_vm.close(tab);}},nativeOn:{"click":function($event){_vm.clickTab(tab);}}})}))]),_vm._v(" "),_c('div',{ref:"contentWrapEl",staticClass:"tabs-content-wrapper"})])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-tabs"},[_c('div',{staticClass:"tabs-list-wrapper"},[_c('ul',{staticClass:"tabs-list"},_vm._l((_vm.tabs),function(tab,index){return _c('tab',{key:index,attrs:{"tab-data":tab},on:{"close":function($event){_vm.close(tab);}},nativeOn:{"click":function($event){_vm.clickTab(tab);}}})}))]),_vm._v(" "),_c('div',{ref:"contentWrapEl",staticClass:"tabs-content-wrapper"})])},
 staticRenderFns: [],
     components: {Tab: Tab},
     data: function data () {
@@ -107,6 +107,9 @@ staticRenderFns: [],
                     var asyncFn = tab.meta.component;
                     this.$set(tab, 'loading', true);
                     promise = new Promise(asyncFn).then(function (Component) {
+                        if (Component.__esModule) {
+                            Component = Component.default;
+                        }
                         return (cached[tab.name] = _this.getVue().extend(Component))
                     });
                 } else {
@@ -158,8 +161,6 @@ staticRenderFns: [],
             function next (target) {
                 if (target == null) {
                     hooks[++i].call(_this, tab, next);
-                } else if (target === false) {
-                    return
                 }
             }
             hooks[0].call(_this, tab, next);
@@ -446,11 +447,11 @@ VueTaber$1.prototype._restoreTabs = function _restoreTabs () {
     }
     storeTabs.forEach(function (tab) {
         this$1.open(tab);
-    });
-    };
+        });
+};
 
 VueTaber$1.prototype.mounted = function mounted () {
-    this._restoreTabs();
+        this._restoreTabs();
 };
 
 prototypeAccessors.vm.set = function (vm) {

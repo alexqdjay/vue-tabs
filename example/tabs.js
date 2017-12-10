@@ -25,8 +25,12 @@ export default [{
 }, {
     name: 'test2',
     title: '测试2',
-    component: {
-        template: '<h2>测试2</h2>'
+    component: resolve => {
+        setTimeout(() => {
+            resolve({
+                template: '<p>测试2</p>'
+            })
+        }, 1000)
     }
 }, {
     name: 'async',
