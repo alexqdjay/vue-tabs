@@ -1,5 +1,5 @@
 /**
- * vue-tabs v0.3.0
+ * vue-tabs v0.3.1
  * (c) 2017 ALEXQDJAY
  * mail: alexqdjay@126.com
  * @license Apache2
@@ -447,11 +447,11 @@ VueTaber$1.prototype._restoreTabs = function _restoreTabs () {
     }
     storeTabs.forEach(function (tab) {
         this$1.open(tab);
-        });
-};
+    });
+    };
 
 VueTaber$1.prototype.mounted = function mounted () {
-        this._restoreTabs();
+    this._restoreTabs();
 };
 
 prototypeAccessors.vm.set = function (vm) {

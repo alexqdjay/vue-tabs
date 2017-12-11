@@ -1,6 +1,6 @@
 {
   "name": "vue-tabs",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A Vue.js tabs framework (多tab页轻型框架)",
   "author": "alexqdjay",
   "main": "vue-tabs.js",
