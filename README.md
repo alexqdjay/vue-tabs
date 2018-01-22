@@ -1,6 +1,6 @@
 # Vue-Tabs
 
-[![npm](https://img.shields.io/npm/dy/localeval.svg)]()
+[![npm](https://img.shields.io/npm/dw/vue-tabs.svg)]()
 
 > A Vue.js tabs framework replacing the URL-ROUTER for Vue2.0 (多tab页轻型框架，在多tab系统中替代路由)
 
