@@ -3,6 +3,7 @@ import Hello from './components/Hello'
 export default [{
     name: 'home',
     title: '首页',
+    id: 'id_home',
     component: Hello,
     beforeCreate (tab, next) {
         console.log('before create:', tab)

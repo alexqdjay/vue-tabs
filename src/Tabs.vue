@@ -143,7 +143,6 @@ export default {
             if (tab.meta.beforeCreate && isFunction(tab.meta.beforeCreate)) {
                 hooks.push(tab.meta.beforeCreate)
             }
-
             let i = 0
             let _this = this
             let next = function (target) {

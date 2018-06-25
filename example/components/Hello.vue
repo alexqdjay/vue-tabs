@@ -27,6 +27,7 @@ function onActiveChange () {
 export default {
     name: 'hello',
     data () {
+        console.log('data: ', this.$tab.meta.id)
         return {
             msg: 'Welcome to Your Vue.js App'
         }
